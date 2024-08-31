@@ -1,0 +1,27 @@
+
+{% extends 'shop/index.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row row-cols-4">
+      {% for artikel in artikels %}
+        <div class="col mb-3">
+            <div class="card" style="max-width: 15rem;">
+              {% if artikel.bild %}
+              <img src="{{ artikel.bild.url }}" class="card-img-top" alt="{{ artikel.name }}">
+          {% else %}
+              <img src="{% static 'bilder/Pokemon-Karten.jpg' %}" class="card-img-top" alt="Standardbild">
+          {% endif %}
+                <div class="card-body">
+                  <h5 class="card-title">{{artikel.name}}</h5>
+                  <p class="card-text">{{artikel.beschreibung}}</p>
+                  <div class="d-flex justify-content-between">
+                    <h5 class="text-secondary">{{artikel.preis|floatformat:2}}€</h5>
+                    <a href="#" class="btn btn-secondary">Bestellen</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock content %}
